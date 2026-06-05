@@ -1,0 +1,57 @@
+{
+  "featured": [
+    {
+      "title": "Aulas Particulares",
+      "description": "Agende sua aula experimental presencial gratuita.",
+      "cta": "Agendar aula",
+      "url": "https://api.whatsapp.com/send?phone=5547988429608&text=Oi!+Gostaria+de+Saber+mais+sobre+as+aulas+Particulares%3F",
+      "image": "assets/mini-aulas.png",
+      "tag": "Violão",
+      "theme": "green"
+    },
+    {
+      "title": "Desafio Violão 10 em 30",
+      "description": "Entre na lista VIP para ter prioridade e receber os bônus.",
+      "cta": "Entrar na lista VIP",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSc_zQFw0i72mUOTr38gOo0FRvzYB4Iu1zI0MExny5rFSyTlAA/viewform?usp=header",
+      "image": "assets/mini-desafio.png",
+      "tag": "Desafio",
+      "theme": "purple"
+    },
+    {
+      "title": "Ebook Volume 1",
+      "description": "Toque 20 músicas no violão com apenas 1 ritmo: Pop-Rock.",
+      "cta": "Ver ebook",
+      "url": "https://pay.kiwify.com.br/fUB4Lhg",
+      "image": "assets/mini-ebook1.png",
+      "tag": "Pop-Rock",
+      "theme": "blue"
+    }
+  ],
+  "quickLinks": [
+    {
+      "title": "Ebook Volume 2",
+      "description": "Aprenda 20 músicas com apenas 1 ritmo no violão: Balada Folk.",
+      "url": "https://pay.kiwify.com.br/IACvV66",
+      "image": "assets/mini-ebook2.png"
+    },
+    {
+      "title": "Ebook Harmonia",
+      "description": "Acordes, escalas, campo harmônico e como tirar música de ouvido.",
+      "url": "https://pay.kiwify.com.br/zrfKblX",
+      "image": "assets/mini-harmonia.png"
+    },
+    {
+      "title": "Banda Audiocast",
+      "description": "Shows, agenda e contatos.",
+      "url": "https://www.instagram.com/bandaaudiocast/",
+      "image": "assets/mini-audiocast.png"
+    },
+    {
+      "title": "Banda Rock'n Tri",
+      "description": "Classic Rock ao vivo.",
+      "url": "https://www.instagram.com/bandarocktri/",
+      "image": "assets/mini-rockntri.png"
+    }
+  ]
+}

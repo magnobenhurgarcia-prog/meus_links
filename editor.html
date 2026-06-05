@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Editor | Magno Mini Site</title>
+    <link rel="stylesheet" href="editor.css">
+  </head>
+  <body>
+    <header class="editor-header">
+      <div>
+        <p class="eyebrow">Editor local</p>
+        <h1>Magno Mini Site</h1>
+      </div>
+      <div class="actions">
+        <a class="ghost-button" href="index.html" target="_blank" rel="noopener noreferrer">Ver site</a>
+        <label class="ghost-button file-button">Importar content.json <input id="import-json" type="file" accept="application/json,.json"></label>
+        <button id="download-json" type="button">Baixar content.json</button>
+      </div>
+    </header>
+
+    <main class="editor-layout">
+      <p id="status-message" class="status-message" role="status"></p>
+
+      <section class="panel">
+        <div class="section-title">
+          <h2>Destaques</h2>
+          <button id="add-featured" type="button">Adicionar destaque</button>
+        </div>
+        <div id="featured-editor" class="form-list"></div>
+      </section>
+
+      <section class="panel">
+        <div class="section-title">
+          <h2>Mais links</h2>
+          <button id="add-quick" type="button">Adicionar link</button>
+        </div>
+        <div id="quick-editor" class="form-list"></div>
+      </section>
+
+      <aside class="panel help-panel">
+        <h2>Como usar</h2>
+        <p>Edite os campos e clique em <strong>Baixar content.json</strong>. Depois substitua o arquivo antigo pelo novo na pasta do projeto.</p>
+        <p>Para trocar imagem/logo, clique em <strong>Escolher imagem</strong>. O editor embute a imagem no JSON automaticamente.</p>
+        <p>Se preferir usar arquivo separado, coloque a imagem em <strong>assets/</strong> e escreva o caminho, por exemplo: <strong>assets/minha-imagem.png</strong>.</p>
+        <p>Ao adicionar destaque, o editor escolhe uma cor pronta automaticamente. Você também pode trocar depois no campo <strong>Cor</strong>.</p>
+      </aside>
+    </main>
+
+    <template id="featured-template">
+      <article class="item-card">
+        <div class="item-card__top">
+          <h3></h3>
+          <button class="remove" type="button">Remover</button>
+        </div>
+        <label>Título <input data-field="title" type="text"></label>
+        <label>Descrição <textarea data-field="description" rows="3"></textarea></label>
+        <label>Texto do botão <input data-field="cta" type="text"></label>
+        <label>Link <input data-field="url" type="url"></label>
+        <label>Imagem <input data-field="image" type="text"></label>
+        <div class="image-tools">
+          <img class="image-preview" alt="">
+          <label class="image-picker">Escolher imagem <input data-image-picker type="file" accept="image/*"></label>
+        </div>
+        <label>Etiqueta <input data-field="tag" type="text"></label>
+        <label>Cor
+          <select data-field="theme">
+            <option value="green">Verde musical</option>
+            <option value="purple">Roxo destaque</option>
+            <option value="blue">Azul ebook</option>
+            <option value="gold">Dourado premium</option>
+            <option value="red">Vermelho palco</option>
+            <option value="dark">Escuro premium</option>
+          </select>
+        </label>
+      </article>
+    </template>
+
+    <template id="quick-template">
+      <article class="item-card">
+        <div class="item-card__top">
+          <h3></h3>
+          <button class="remove" type="button">Remover</button>
+        </div>
+        <label>Título <input data-field="title" type="text"></label>
+        <label>Descrição <textarea data-field="description" rows="3"></textarea></label>
+        <label>Link <input data-field="url" type="url"></label>
+        <label>Imagem <input data-field="image" type="text"></label>
+        <div class="image-tools">
+          <img class="image-preview" alt="">
+          <label class="image-picker">Escolher imagem <input data-image-picker type="file" accept="image/*"></label>
+        </div>
+      </article>
+    </template>
+
+    <script src="editor.js"></script>
+  </body>
+</html>
