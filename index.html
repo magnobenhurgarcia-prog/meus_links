@@ -9,14 +9,25 @@
     <meta property="og:title" content="Magno Benhur Garcia | Links">
     <meta property="og:description" content="Aulas, ebooks, desafio e bandas em um só lugar.">
     <meta property="og:image" content="assets/magno.png">
-    <link rel="preload" as="image" href="assets/magno.png" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/magno-hero-mobile.jpg" media="(max-width: 759px)" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/magno.png" media="(min-width: 760px)" fetchpriority="high">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <header class="hero-band">
       <div class="page-shell page-shell--hero">
         <section class="hero" aria-labelledby="profile-name">
-          <img class="hero__image" src="assets/magno.png" alt="Magno Benhur Garcia" width="1080" height="1080" fetchpriority="high" decoding="async">
+          <picture>
+            <source media="(max-width: 759px)" srcset="assets/magno-hero-mobile.jpg">
+            <img
+              class="hero__image"
+              src="assets/magno.png"
+              alt="Magno Benhur Garcia"
+              width="1080"
+              height="1080"
+              fetchpriority="high"
+              decoding="async">
+          </picture>
           <div class="hero__shade"></div>
           <div class="hero__content">
             <p class="eyebrow">Músico • Professor • Produtor</p>

@@ -212,7 +212,6 @@ h2 {
 .featured-grid {
   display: grid;
   gap: 16px;
-  min-height: 1320px;
 }
 
 .feature-card {
@@ -363,7 +362,6 @@ h2 {
 .link-grid {
   display: grid;
   gap: 12px;
-  min-height: 440px;
 }
 
 .quick-card {
@@ -508,6 +506,13 @@ h2 {
   .hero__image {
     top: -45px;
     height: 455px;
+  }
+
+  .music-band {
+    background:
+      linear-gradient(180deg, #050605 0%, rgba(5, 6, 5, 0) 58px),
+      linear-gradient(180deg, rgba(255, 248, 221, 0.16), rgba(112, 73, 24, 0.1)),
+      url("assets/partitura-vintage-bg-mobile.jpg") center top / cover no-repeat;
   }
 
   .feature-card {

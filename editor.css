@@ -254,6 +254,12 @@ textarea {
 }
 
 @media (max-width: 620px) {
+  body {
+    background:
+      linear-gradient(rgba(255, 250, 240, 0.78), rgba(255, 250, 240, 0.78)),
+      url("assets/partitura-vintage-bg-mobile.jpg") center top / cover fixed;
+  }
+
   .editor-header {
     position: static;
     align-items: flex-start;
