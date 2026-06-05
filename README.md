@@ -30,6 +30,8 @@ Para adicionar novos itens, use os botões `Adicionar destaque` e `Adicionar lin
 
 Em cada card, o botão `Escolher imagem` embute a imagem diretamente no JSON exportado. Isso é mais prático, mas deixa o `content.json` maior. Se quiser manter o JSON leve, salve a imagem em `assets/` e preencha o campo `Imagem` com o caminho do arquivo.
 
+Para imagens grandes de fundo, prefira JPG/WebP em vez de PNG. O fundo atual usa `assets/partitura-vintage-bg.jpg` para carregar mais rápido.
+
 ## Como visualizar
 
 Na pasta do projeto, rode:
