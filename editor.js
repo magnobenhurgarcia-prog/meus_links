@@ -1,4 +1,7 @@
 const state = {
+  profile: {
+    image: "assets/magno.png",
+  },
   featured: [],
   quickLinks: [],
 };
@@ -8,6 +11,9 @@ const quickEditor = document.querySelector("#quick-editor");
 const featuredTemplate = document.querySelector("#featured-template");
 const quickTemplate = document.querySelector("#quick-template");
 const statusMessage = document.querySelector("#status-message");
+const profilePreview = document.querySelector("#profile-preview");
+const profileImageInput = document.querySelector("#profile-image-input");
+const profileImagePicker = document.querySelector("#profile-image-picker");
 const featuredThemes = ["green", "purple", "blue", "gold", "red", "dark"];
 const githubConfig = {
   owner: "magnobenhurgarcia-prog",
@@ -57,6 +63,11 @@ function updateImagePreview(card, item) {
   const preview = card.querySelector(".image-preview");
   if (!preview) return;
   preview.src = item.image || "";
+}
+
+function updateProfilePreview() {
+  profileImageInput.value = state.profile.image || "";
+  profilePreview.src = state.profile.image || "assets/magno.png";
 }
 
 function readFileAsDataUrl(file) {
@@ -124,6 +135,9 @@ function render() {
 
 function normalizeContent(content) {
   return {
+    profile: {
+      image: content.profile?.image || "assets/magno.png",
+    },
     featured: Array.isArray(content.featured) ? content.featured.map(cloneItem) : [],
     quickLinks: Array.isArray(content.quickLinks) ? content.quickLinks.map(cloneItem) : [],
   };
@@ -131,8 +145,10 @@ function normalizeContent(content) {
 
 function setContent(content) {
   const normalized = normalizeContent(content);
+  state.profile = normalized.profile;
   state.featured = normalized.featured;
   state.quickLinks = normalized.quickLinks;
+  updateProfilePreview();
   render();
 }
 
@@ -210,7 +226,7 @@ document.querySelector("#add-featured").addEventListener("click", () => {
   });
   render();
   featuredEditor.lastElementChild?.scrollIntoView({ behavior: "smooth", block: "center" });
-  setStatus("Novo destaque adicionado. Preencha os campos e baixe o content.json para salvar.");
+  setStatus("Novo destaque adicionado. Preencha os campos e clique em Salvar alterações.");
 });
 
 document.querySelector("#add-quick").addEventListener("click", () => {
@@ -222,10 +238,21 @@ document.querySelector("#add-quick").addEventListener("click", () => {
   });
   render();
   quickEditor.lastElementChild?.scrollIntoView({ behavior: "smooth", block: "center" });
-  setStatus("Novo link adicionado. Preencha os campos e baixe o content.json para salvar.");
+  setStatus("Novo link adicionado. Preencha os campos e clique em Salvar alterações.");
 });
 
-document.querySelector("#download-json").addEventListener("click", downloadJson);
+profileImageInput.addEventListener("input", () => {
+  state.profile.image = profileImageInput.value;
+  updateProfilePreview();
+});
+
+profileImagePicker.addEventListener("change", async (event) => {
+  const file = event.target.files?.[0];
+  if (!file) return;
+  state.profile.image = await readFileAsDataUrl(file);
+  updateProfilePreview();
+  setStatus("Foto do cabeçalho adicionada. Clique em Salvar alterações para publicar.");
+});
 
 document.querySelector("#save-token").addEventListener("click", () => {
   const tokenInput = document.querySelector("#github-token");
@@ -244,7 +271,7 @@ document.querySelector("#clear-token").addEventListener("click", () => {
   setStatus("Token apagado deste navegador.");
 });
 
-document.querySelector("#publish-github").addEventListener("click", async () => {
+document.querySelector("#save-changes").addEventListener("click", async () => {
   try {
     await publishToGithub();
   } catch (error) {
@@ -252,15 +279,7 @@ document.querySelector("#publish-github").addEventListener("click", async () => 
   }
 });
 
-document.querySelector("#import-json").addEventListener("change", async (event) => {
-  const file = event.target.files?.[0];
-  if (!file) return;
-  const text = await file.text();
-  setContent(JSON.parse(text));
-  setStatus("content.json importado com sucesso.");
-});
-
 loadContent().catch((error) => {
-  setContent({ featured: [], quickLinks: [] });
-  setStatus(`${error.message}. Use "Importar content.json" ou adicione novos itens manualmente.`);
+  setContent({ profile: { image: "assets/magno.png" }, featured: [], quickLinks: [] });
+  setStatus(`${error.message}. Recarregue a página ou tente novamente em alguns instantes.`);
 });

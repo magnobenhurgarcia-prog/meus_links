@@ -1,5 +1,6 @@
 const featuredContainer = document.querySelector("#featured-links");
 const quickContainer = document.querySelector("#quick-links");
+const profileImage = document.querySelector("#profile-image");
 
 function createFeaturedCard(item) {
   const link = document.createElement("a");
@@ -52,6 +53,9 @@ async function loadContent() {
 
 loadContent()
   .then((content) => {
+    if (content.profile?.image && profileImage) {
+      profileImage.src = content.profile.image;
+    }
     content.featured.forEach((item) => featuredContainer.append(createFeaturedCard(item)));
     content.quickLinks.forEach((item) => quickContainer.append(createQuickLink(item)));
   })

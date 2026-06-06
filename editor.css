@@ -115,6 +115,10 @@ button,
   padding: 24px clamp(16px, 4vw, 40px) 42px;
 }
 
+.editor-layout > .panel:first-of-type {
+  grid-column: 1 / -1;
+}
+
 .status-message {
   grid-column: 1 / -1;
   min-height: 0;
@@ -188,6 +192,27 @@ h2 {
   display: grid;
   grid-template-columns: 72px 1fr;
   align-items: center;
+  gap: 10px;
+}
+
+.profile-editor {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+}
+
+.profile-preview {
+  width: 160px;
+  height: 160px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #100d09;
+  object-fit: cover;
+}
+
+.profile-fields {
+  display: grid;
   gap: 10px;
 }
 
@@ -279,5 +304,15 @@ textarea {
 
   .actions {
     justify-content: flex-start;
+  }
+
+  .profile-editor {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-preview {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
   }
 }
