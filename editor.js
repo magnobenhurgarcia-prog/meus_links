@@ -187,6 +187,9 @@ async function githubRequest(path, options = {}) {
 
   const data = await response.json().catch(() => ({}));
   if (!response.ok) {
+    if (data.message === "Resource not accessible by personal access token") {
+      throw new Error("O token não tem permissão para editar este repositório. Crie ou ajuste o token com acesso ao repositório meus_links e permissão Contents: Read and write.");
+    }
     throw new Error(data.message || `Erro no GitHub: ${response.status}`);
   }
   return data;
