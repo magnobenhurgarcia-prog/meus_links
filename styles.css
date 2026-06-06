@@ -222,15 +222,12 @@ h2 {
   overflow: hidden;
   border: 0;
   border-radius: 8px;
-  background:
-    radial-gradient(circle at 50% 14%, rgba(255, 255, 255, 0.54), transparent 24rem),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.08) 48%, rgba(15, 12, 8, 0.76) 100%),
-    var(--surface);
+  background: url("assets/leather-card-cover.jpg") center / cover no-repeat;
   box-shadow:
     0 38px 54px -28px rgba(36, 20, 5, 0.66),
     0 16px 24px -22px rgba(28, 17, 5, 0.58),
-    inset 0 1px 0 rgba(255, 255, 255, 0.72),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.34);
+    inset 0 1px 0 rgba(255, 255, 255, 0.48),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.48);
   filter: drop-shadow(0 9px 9px rgba(42, 25, 7, 0.2));
   transition: transform 180ms ease, border-color 180ms ease;
 }
@@ -249,38 +246,25 @@ h2 {
 .feature-card::after {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: 38px 28px 38px;
   z-index: 1;
+  border-radius: 8px;
   background:
+    radial-gradient(circle at 50% 14%, rgba(255, 255, 255, 0.54), transparent 24rem),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.08) 48%, rgba(15, 12, 8, 0.76) 100%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 38%, rgba(0, 0, 0, 0.18) 64%, rgba(0, 0, 0, 0.9) 100%),
     linear-gradient(180deg, rgba(13, 11, 8, 0) 42%, rgba(3, 3, 3, 0.58) 72%, rgba(0, 0, 0, 0.96) 100%),
-    radial-gradient(circle at 50% 26%, var(--glow), transparent 23rem);
+    radial-gradient(circle at 50% 26%, var(--glow), transparent 23rem),
+    var(--surface);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.65),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.55),
+    0 18px 36px -24px rgba(0, 0, 0, 0.7);
   pointer-events: none;
 }
 
 .feature-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 4;
-  border-radius: 8px;
-  padding: 9px;
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.08)),
-    url("assets/leather-card-frame.jpg") center / cover no-repeat;
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 225, 164, 0.22),
-    inset 0 0 18px rgba(22, 9, 2, 0.42),
-    0 18px 34px -28px rgba(32, 16, 5, 0.74);
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  mask-composite: exclude;
-  pointer-events: none;
+  content: none;
 }
 
 .feature-card--green {
@@ -321,7 +305,7 @@ h2 {
 
 .feature-card__image {
   position: absolute;
-  top: 18px;
+  top: 56px;
   left: 50%;
   z-index: 2;
   width: min(68%, 360px);
@@ -335,8 +319,8 @@ h2 {
 
 .feature-card__tag {
   position: absolute;
-  top: 18px;
-  left: 18px;
+  top: 58px;
+  left: 48px;
   z-index: 5;
   border: 1px solid rgba(23, 18, 10, 0.12);
   border-radius: 999px;
@@ -352,7 +336,7 @@ h2 {
 .feature-card__body {
   position: relative;
   z-index: 5;
-  padding: 0 22px 24px;
+  padding: 0 54px 62px;
   text-align: center;
 }
 
@@ -494,13 +478,13 @@ h2 {
   }
 
   .feature-card__image {
-    top: 32px;
-    width: min(72%, 310px);
+    top: 76px;
+    width: min(62%, 270px);
   }
 
   .feature-card__body {
-    padding-inline: 20px;
-    padding-bottom: 34px;
+    padding-inline: 54px;
+    padding-bottom: 70px;
   }
 
   .feature-card h3 {
@@ -557,13 +541,13 @@ h2 {
     position: relative;
     top: auto;
     left: auto;
-    width: min(56%, 230px);
-    margin: 58px auto 24px;
+    width: min(54%, 220px);
+    margin: 80px auto 24px;
     transform: none;
   }
 
   .feature-card__body {
-    padding: 0 22px 28px;
+    padding: 0 42px 58px;
   }
 
   .feature-card h3 {
