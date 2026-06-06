@@ -9,6 +9,12 @@ const featuredTemplate = document.querySelector("#featured-template");
 const quickTemplate = document.querySelector("#quick-template");
 const statusMessage = document.querySelector("#status-message");
 const featuredThemes = ["green", "purple", "blue", "gold", "red", "dark"];
+const githubConfig = {
+  owner: "magnobenhurgarcia-prog",
+  repo: "meus_links",
+  branch: "main",
+  path: "content.json",
+};
 
 function cloneItem(item) {
   return JSON.parse(JSON.stringify(item));
@@ -24,6 +30,27 @@ function setStatus(message) {
   setStatus.timeout = window.setTimeout(() => {
     statusMessage.textContent = "";
   }, 4200);
+}
+
+function getToken() {
+  return localStorage.getItem("magnoMiniSiteGithubToken") || "";
+}
+
+function setToken(token) {
+  localStorage.setItem("magnoMiniSiteGithubToken", token);
+}
+
+function clearToken() {
+  localStorage.removeItem("magnoMiniSiteGithubToken");
+}
+
+function utf8ToBase64(value) {
+  const bytes = new TextEncoder().encode(value);
+  let binary = "";
+  bytes.forEach((byte) => {
+    binary += String.fromCharCode(byte);
+  });
+  return btoa(binary);
 }
 
 function updateImagePreview(card, item) {
@@ -126,6 +153,50 @@ function downloadJson() {
   URL.revokeObjectURL(url);
 }
 
+async function githubRequest(path, options = {}) {
+  const token = getToken();
+  if (!token) {
+    throw new Error("Cole e salve um token do GitHub antes de publicar.");
+  }
+
+  const response = await fetch(`https://api.github.com${path}`, {
+    ...options,
+    headers: {
+      Accept: "application/vnd.github+json",
+      Authorization: `Bearer ${token}`,
+      "X-GitHub-Api-Version": "2022-11-28",
+      ...(options.headers || {}),
+    },
+  });
+
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    throw new Error(data.message || `Erro no GitHub: ${response.status}`);
+  }
+  return data;
+}
+
+async function publishToGithub() {
+  const { owner, repo, branch, path } = githubConfig;
+  const encodedPath = encodeURIComponent(path);
+  setStatus("Publicando no GitHub...");
+
+  const currentFile = await githubRequest(`/repos/${owner}/${repo}/contents/${encodedPath}?ref=${branch}`);
+  const content = JSON.stringify(state, null, 2);
+
+  await githubRequest(`/repos/${owner}/${repo}/contents/${encodedPath}`, {
+    method: "PUT",
+    body: JSON.stringify({
+      message: "Atualiza conteúdo pelo editor online",
+      content: utf8ToBase64(content),
+      sha: currentFile.sha,
+      branch,
+    }),
+  });
+
+  setStatus("Publicado no GitHub. O Cloudflare deve atualizar o site em alguns instantes.");
+}
+
 document.querySelector("#add-featured").addEventListener("click", () => {
   const theme = featuredThemes[state.featured.length % featuredThemes.length];
   state.featured.push({
@@ -155,6 +226,31 @@ document.querySelector("#add-quick").addEventListener("click", () => {
 });
 
 document.querySelector("#download-json").addEventListener("click", downloadJson);
+
+document.querySelector("#save-token").addEventListener("click", () => {
+  const tokenInput = document.querySelector("#github-token");
+  const token = tokenInput.value.trim();
+  if (!token) {
+    setStatus("Cole um token antes de salvar.");
+    return;
+  }
+  setToken(token);
+  tokenInput.value = "";
+  setStatus("Token salvo neste navegador.");
+});
+
+document.querySelector("#clear-token").addEventListener("click", () => {
+  clearToken();
+  setStatus("Token apagado deste navegador.");
+});
+
+document.querySelector("#publish-github").addEventListener("click", async () => {
+  try {
+    await publishToGithub();
+  } catch (error) {
+    setStatus(error.message);
+  }
+});
 
 document.querySelector("#import-json").addEventListener("change", async (event) => {
   const file = event.target.files?.[0];

@@ -30,6 +30,18 @@ Para adicionar novos itens, use os botões `Adicionar destaque` e `Adicionar lin
 
 Em cada card, o botão `Escolher imagem` embute a imagem diretamente no JSON exportado. Isso é mais prático, mas deixa o `content.json` maior. Se quiser manter o JSON leve, salve a imagem em `assets/` e preencha o campo `Imagem` com o caminho do arquivo.
 
+## Editor online
+
+Depois que o site estiver publicado, o editor pode ser aberto em qualquer aparelho:
+
+```text
+https://magnobenhurgarcialinks.pages.dev/editor.html
+```
+
+Para publicar direto pelo editor, crie um token fino do GitHub com acesso de escrita ao repositório `meus_links` e permissão `Contents: Read and write`. Cole o token no editor, clique em `Salvar token`, edite os links e use `Publicar no GitHub`.
+
+O token fica salvo somente no navegador do aparelho onde você salvou. Use apenas em aparelhos seus.
+
 Para imagens grandes de fundo, prefira JPG/WebP em vez de PNG. O fundo atual usa `assets/partitura-vintage-bg.jpg` para carregar mais rápido.
 
 ## Como visualizar

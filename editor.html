@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
     <title>Editor | Magno Mini Site</title>
     <link rel="stylesheet" href="editor.css">
   </head>
@@ -16,6 +17,7 @@
         <a class="ghost-button" href="index.html" target="_blank" rel="noopener noreferrer">Ver site</a>
         <label class="ghost-button file-button">Importar content.json <input id="import-json" type="file" accept="application/json,.json"></label>
         <button id="download-json" type="button">Baixar content.json</button>
+        <button id="publish-github" type="button">Publicar no GitHub</button>
       </div>
     </header>
 
@@ -40,10 +42,16 @@
 
       <aside class="panel help-panel">
         <h2>Como usar</h2>
-        <p>Edite os campos e clique em <strong>Baixar content.json</strong>. Depois substitua o arquivo antigo pelo novo na pasta do projeto.</p>
+        <p>Edite os campos e clique em <strong>Publicar no GitHub</strong>. O Cloudflare publica o site depois de alguns instantes.</p>
+        <label>Token do GitHub <input id="github-token" type="password" autocomplete="off" placeholder="Cole seu token aqui"></label>
+        <div class="token-actions">
+          <button id="save-token" type="button">Salvar token</button>
+          <button id="clear-token" class="danger-button" type="button">Apagar token</button>
+        </div>
         <p>Para trocar imagem/logo, clique em <strong>Escolher imagem</strong>. O editor embute a imagem no JSON automaticamente.</p>
         <p>Se preferir usar arquivo separado, coloque a imagem em <strong>assets/</strong> e escreva o caminho, por exemplo: <strong>assets/minha-imagem.png</strong>.</p>
         <p>Ao adicionar destaque, o editor escolhe uma cor pronta automaticamente. Você também pode trocar depois no campo <strong>Cor</strong>.</p>
+        <p>Use este editor apenas em aparelhos seus. O token fica salvo somente no navegador onde você salvar.</p>
       </aside>
     </main>
 

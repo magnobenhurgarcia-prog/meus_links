@@ -173,6 +173,17 @@ h2 {
   color: #fff8e8;
 }
 
+.danger-button {
+  background: #5a1d12;
+  color: #fff8e8;
+}
+
+.token-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
 .image-tools {
   display: grid;
   grid-template-columns: 72px 1fr;
